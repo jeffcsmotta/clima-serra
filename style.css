@@ -1,45 +1,69 @@
 /* ==========================================================================
    Clima Serra - Climatização & Ar Condicionado (Caxias do Sul - RS)
-   Design System: 2 Dobras + 1 Footer (Direto, Simples & Elegante)
+   Design System & Master Stylesheet: Nova Identidade Visual & Alta Conversão
    ========================================================================== */
 
 :root {
   --font-display: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 
-  /* Palette: Pure Clean Architecture */
+  /* Paleta Oficial Baseada no Novo Logotipo */
+  --bg-dark: #081325;
+  --bg-dark-surface: #0E1E38;
+  --bg-dark-card: #132747;
+  
   --bg-page: #F8FAFC;
   --bg-surface: #FFFFFF;
-  --bg-dark: #0A1120;
-  --bg-dark-card: #131E36;
+  --bg-subtle: #F1F5F9;
 
   --text-main: #0F172A;
   --text-muted: #475569;
   --text-light: #94A3B8;
+  --text-inverted: #FFFFFF;
+  --text-inverted-muted: #CBD5E1;
 
+  /* Ciano Técnico e Climatização */
   --brand-cyan: #0284C7;
   --brand-cyan-light: #38BDF8;
-  --brand-cyan-bg: #E0F2FE;
+  --brand-cyan-glow: rgba(56, 189, 248, 0.25);
+  --brand-navy: #082C4D;
+  --brand-navy-deep: #051A2E;
 
+  /* Cores Temáticas de Benefícios */
+  --energy-emerald: #10B981;
+  --energy-emerald-bg: rgba(16, 185, 129, 0.1);
+  --health-blue: #0284C7;
+  --health-blue-bg: rgba(2, 132, 199, 0.1);
+  --trust-amber: #F59E0B;
+  --trust-amber-bg: rgba(245, 158, 11, 0.1);
+
+  /* WhatsApp Oficial */
   --whatsapp: #25D366;
   --whatsapp-hover: #1EBE5D;
-  --whatsapp-glow: rgba(37, 211, 102, 0.28);
+  --whatsapp-glow: rgba(37, 211, 102, 0.36);
 
+  /* Bordas e Raios */
   --border-subtle: #E2E8F0;
+  --border-dark: rgba(255, 255, 255, 0.1);
   --radius-sm: 8px;
   --radius-md: 14px;
   --radius-lg: 20px;
+  --radius-xl: 24px;
   --radius-full: 9999px;
 
+  /* Sombras */
   --shadow-sm: 0 2px 8px rgba(15, 23, 42, 0.04);
-  --shadow-md: 0 12px 28px -4px rgba(15, 23, 42, 0.08);
+  --shadow-md: 0 10px 24px -4px rgba(15, 23, 42, 0.08);
   --shadow-lg: 0 20px 40px -8px rgba(15, 23, 42, 0.12);
 
-  --container-max: 1160px;
+  --container-max: 1180px;
   --container-pad: 24px;
-  --transition: 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition: 0.26s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+/* ==========================================================================
+   Reset & Base
+   ========================================================================== */
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
@@ -50,6 +74,7 @@ html {
   scroll-behavior: smooth;
   font-size: 16px;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
@@ -81,17 +106,18 @@ a {
 }
 
 /* ==========================================================================
-   Header (Compact & Clean)
+   Header Institucional (Limpo & Focado)
    ========================================================================== */
 .site-header {
   background: rgba(255, 255, 255, 0.94);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
   border-bottom: 1px solid var(--border-subtle);
   position: sticky;
   top: 0;
   z-index: 100;
   padding: 12px 0;
+  transition: all var(--transition);
 }
 
 .nav-container {
@@ -106,11 +132,11 @@ a {
 }
 
 .brand-logo-img {
-  height: 44px;
+  height: 48px;
   width: auto;
 }
 
-.header-contact {
+.header-actions {
   display: flex;
   align-items: center;
   gap: 16px;
@@ -123,10 +149,11 @@ a {
   font-size: 0.8125rem;
   font-weight: 600;
   color: var(--text-muted);
-  background: var(--bg-page);
-  padding: 6px 12px;
+  background: var(--bg-subtle);
+  padding: 6px 14px;
   border-radius: var(--radius-full);
   border: 1px solid var(--border-subtle);
+  white-space: nowrap;
 }
 
 .status-dot {
@@ -134,12 +161,13 @@ a {
   height: 8px;
   background-color: var(--whatsapp);
   border-radius: 50%;
-  animation: pulse-dot 1.8s infinite;
+  box-shadow: 0 0 8px rgba(37, 211, 102, 0.6);
+  animation: pulse-dot 2s infinite;
 }
 
 @keyframes pulse-dot {
   0% { transform: scale(0.95); opacity: 0.8; }
-  50% { transform: scale(1.2); opacity: 1; }
+  50% { transform: scale(1.25); opacity: 1; }
   100% { transform: scale(0.95); opacity: 0.8; }
 }
 
@@ -149,7 +177,7 @@ a {
   gap: 8px;
   background-color: var(--whatsapp);
   color: #FFFFFF;
-  padding: 8px 16px;
+  padding: 9px 18px;
   border-radius: var(--radius-full);
   font-size: 0.875rem;
   font-weight: 700;
@@ -162,98 +190,106 @@ a {
 }
 
 /* ==========================================================================
-   DOBRA 1: Hero Section (Alinhamento à Esquerda com Shader de Background)
+   DOBRA 1: Hero Section (Tipografia Invertida sobre Fundo Escuro Imersivo)
    ========================================================================== */
 .hero-fold {
   position: relative;
-  padding: 88px 0 80px;
-  background-color: #FFFFFF;
+  min-height: 84vh;
+  display: flex;
+  align-items: center;
+  background-color: var(--bg-dark);
   background-image:
     linear-gradient(90deg,
-      #FFFFFF 0%,
-      #FFFFFF 36%,
-      rgba(255, 255, 255, 0.96) 48%,
-      rgba(255, 255, 255, 0.68) 64%,
-      rgba(255, 255, 255, 0.12) 84%,
-      transparent 100%
+      rgba(8, 19, 37, 0.98) 0%,
+      rgba(8, 19, 37, 0.95) 38%,
+      rgba(8, 19, 37, 0.76) 62%,
+      rgba(8, 19, 37, 0.38) 84%,
+      rgba(8, 19, 37, 0.22) 100%
     ),
     url('assets/hero-bg.jpg');
   background-repeat: no-repeat;
   background-position: right center;
   background-size: cover;
-  border-bottom: 1px solid var(--border-subtle);
+  padding: 84px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  color: var(--text-inverted);
   overflow: hidden;
 }
 
 .hero-box {
-  max-width: 640px;
-  margin: 0;
-  text-align: left;
+  max-width: 660px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  text-align: left;
 }
 
 .hero-pill {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 6px 14px;
-  background-color: var(--brand-cyan-bg);
-  color: var(--brand-cyan);
+  padding: 7px 16px;
+  background: rgba(2, 132, 199, 0.16);
+  border: 1px solid rgba(56, 189, 248, 0.35);
+  color: var(--brand-cyan-light);
   border-radius: var(--radius-full);
   font-size: 0.8125rem;
   font-weight: 700;
   letter-spacing: 0.03em;
-  text-transform: uppercase;
-  margin-bottom: 20px;
-  margin-left: 0;
+  margin-bottom: 22px;
+  backdrop-filter: blur(8px);
+}
+
+.pill-icon {
+  width: 15px;
+  height: 15px;
+  color: var(--brand-cyan-light);
 }
 
 .hero-title {
   font-family: var(--font-display);
-  font-size: 2.85rem;
+  font-size: 3.1rem;
   font-weight: 900;
-  line-height: 1.14;
+  line-height: 1.12;
   letter-spacing: -0.03em;
-  color: var(--text-main);
+  color: #FFFFFF;
   margin-bottom: 20px;
-  text-align: left;
+  text-shadow: 0 4px 18px rgba(0, 0, 0, 0.35);
 }
 
 .hero-title .highlight {
-  color: var(--brand-cyan);
+  color: var(--brand-cyan-light);
+  background: linear-gradient(135deg, #38BDF8 0%, #0284C7 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .hero-description {
   font-size: 1.15rem;
-  color: var(--text-muted);
-  line-height: 1.65;
+  color: var(--text-inverted-muted);
+  line-height: 1.68;
   margin-bottom: 36px;
-  max-width: 580px;
-  margin-left: 0;
-  margin-right: 0;
-  text-align: left;
+  max-width: 590px;
 }
 
+/* Grupo de CTAs do Hero */
 .hero-cta-group {
   display: flex;
   align-items: center;
   justify-content: flex-start;
   gap: 16px;
   flex-wrap: wrap;
-  margin-bottom: 40px;
+  margin-bottom: 42px;
   width: 100%;
 }
 
-/* WhatsApp Main Button */
 .btn-whatsapp-main {
   display: inline-flex;
   align-items: center;
   gap: 14px;
   background-color: var(--whatsapp);
   color: #FFFFFF;
-  padding: 16px 30px;
+  padding: 16px 28px;
   border-radius: var(--radius-md);
   box-shadow: 0 12px 28px var(--whatsapp-glow);
   text-align: left;
@@ -262,111 +298,317 @@ a {
 .btn-whatsapp-main:hover {
   background-color: var(--whatsapp-hover);
   transform: translateY(-2px);
-  box-shadow: 0 16px 36px rgba(37, 211, 102, 0.4);
+  box-shadow: 0 16px 36px rgba(37, 211, 102, 0.45);
 }
 
 .btn-icon-lg {
-  width: 28px;
-  height: 28px;
+  width: 30px;
+  height: 30px;
   flex-shrink: 0;
 }
 
 .cta-action {
   display: block;
   font-family: var(--font-display);
-  font-size: 1.0625rem;
+  font-size: 1.1rem;
   font-weight: 800;
   line-height: 1.2;
 }
 
-.cta-phone {
+.cta-sub {
   display: block;
   font-size: 0.8125rem;
-  opacity: 0.92;
+  color: rgba(255, 255, 255, 0.92);
   font-weight: 600;
+  margin-top: 2px;
 }
 
-/* Direct Phone Button */
 .btn-phone-direct {
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  background-color: #FFFFFF;
-  color: var(--text-main);
-  border: 1px solid var(--border-subtle);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #FFFFFF;
   padding: 18px 24px;
   border-radius: var(--radius-md);
   font-family: var(--font-display);
-  font-size: 0.9375rem;
+  font-size: 0.95rem;
   font-weight: 700;
-  box-shadow: var(--shadow-sm);
+  backdrop-filter: blur(8px);
 }
 
 .btn-phone-direct:hover {
-  background-color: #F1F5F9;
-  border-color: #CBD5E1;
+  background: rgba(255, 255, 255, 0.16);
+  border-color: rgba(255, 255, 255, 0.35);
   transform: translateY(-2px);
 }
 
 .btn-icon {
   width: 18px;
   height: 18px;
-  color: var(--brand-cyan);
 }
 
-/* 4-Pill Services Strip (Compact & Left-Aligned) */
+/* 4 Pilares de Serviço em Faixa de Vidro */
 .services-strip {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 10px;
-  padding-top: 24px;
-  border-top: 1px solid var(--border-subtle);
-  max-width: 580px;
+  gap: 12px;
+  padding-top: 28px;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  max-width: 600px;
   width: 100%;
 }
 
 .service-pill {
   display: flex;
   align-items: center;
-  justify-content: flex-start;
-  gap: 8px;
-  background: rgba(255, 255, 255, 0.92);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  border: 1px solid var(--border-subtle);
-  padding: 10px 14px;
+  gap: 10px;
+  background: rgba(14, 30, 56, 0.72);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(56, 189, 248, 0.2);
+  padding: 11px 16px;
   border-radius: var(--radius-md);
-  font-size: 0.8125rem;
+  font-size: 0.84rem;
   font-weight: 700;
-  color: var(--text-main);
-  box-shadow: var(--shadow-sm);
+  color: #F1F5F9;
 }
 
 .service-pill i {
-  width: 16px;
-  height: 16px;
-  color: var(--brand-cyan);
+  width: 18px;
+  height: 18px;
+  color: var(--brand-cyan-light);
   flex-shrink: 0;
 }
 
 /* ==========================================================================
-   DOBRA 2: Base Técnica, Atendimento & Google Maps
+   DOBRA 2: Blocos de Informação (Saúde Respiratória & Energia)
+   ========================================================================== */
+.benefits-fold {
+  padding: 88px 0 84px;
+  background-color: var(--bg-page);
+}
+
+.section-header-center {
+  text-align: center;
+  max-width: 740px;
+  margin: 0 auto 52px;
+}
+
+.section-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 16px;
+  background-color: var(--brand-cyan-glow);
+  color: var(--brand-cyan);
+  border-radius: var(--radius-full);
+  font-size: 0.8125rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+.section-heading {
+  font-family: var(--font-display);
+  font-size: 2.35rem;
+  font-weight: 900;
+  line-height: 1.2;
+  color: var(--text-main);
+  letter-spacing: -0.025em;
+  margin-bottom: 14px;
+}
+
+.section-subheading {
+  font-size: 1.05rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+.benefits-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  margin-bottom: 48px;
+}
+
+.benefit-card {
+  background: var(--bg-surface);
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--border-subtle);
+  padding: 34px 28px;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  transition: all var(--transition);
+}
+
+.benefit-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+  border-color: #CBD5E1;
+}
+
+.card-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  align-self: flex-start;
+  padding: 6px 12px;
+  border-radius: var(--radius-full);
+  font-size: 0.775rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  margin-bottom: 20px;
+}
+
+.card-badge i {
+  width: 14px;
+  height: 14px;
+}
+
+.badge-energy {
+  background: var(--energy-emerald-bg);
+  color: #059669;
+  border: 1px solid rgba(16, 185, 129, 0.25);
+}
+
+.badge-health {
+  background: var(--health-blue-bg);
+  color: var(--brand-cyan);
+  border: 1px solid rgba(2, 132, 199, 0.25);
+}
+
+.badge-trust {
+  background: var(--trust-amber-bg);
+  color: #D97706;
+  border: 1px solid rgba(245, 158, 11, 0.25);
+}
+
+.metric-highlight {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 16px;
+}
+
+.metric-number {
+  font-family: var(--font-display);
+  font-size: 2.6rem;
+  font-weight: 900;
+  line-height: 1.1;
+  color: var(--brand-navy);
+  letter-spacing: -0.03em;
+}
+
+.metric-label {
+  font-size: 0.925rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+
+.card-desc {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+
+.card-feature-list {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.feature-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-main);
+  line-height: 1.4;
+}
+
+.feat-check {
+  width: 16px;
+  height: 16px;
+  color: var(--whatsapp);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+/* Banner de Cotação Rápida */
+.service-quote-banner {
+  background: linear-gradient(135deg, var(--bg-dark) 0%, #0D2644 100%);
+  border: 1px solid rgba(56, 189, 248, 0.2);
+  border-radius: var(--radius-xl);
+  padding: 36px 44px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  color: #FFFFFF;
+  box-shadow: var(--shadow-lg);
+}
+
+.quote-text h3 {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 800;
+  margin-bottom: 6px;
+}
+
+.quote-text p {
+  color: var(--text-inverted-muted);
+  font-size: 0.95rem;
+}
+
+.btn-banner-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background-color: var(--whatsapp);
+  color: #FFFFFF;
+  padding: 14px 26px;
+  border-radius: var(--radius-md);
+  font-weight: 700;
+  font-size: 0.95rem;
+  box-shadow: 0 8px 20px var(--whatsapp-glow);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.btn-banner-cta:hover {
+  background-color: var(--whatsapp-hover);
+  transform: translateY(-2px);
+}
+
+/* ==========================================================================
+   DOBRA 3: Base Técnica, Atendimento & Google Maps
    ========================================================================== */
 .location-fold {
-  padding: 72px 0 80px;
-  background-color: var(--bg-page);
+  padding: 80px 0 88px;
+  background-color: #FFFFFF;
+  border-top: 1px solid var(--border-subtle);
 }
 
 .location-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 36px;
+  gap: 40px;
   align-items: stretch;
 }
 
 .location-details {
-  background: #FFFFFF;
-  border-radius: var(--radius-lg);
+  background: var(--bg-page);
+  border-radius: var(--radius-xl);
   border: 1px solid var(--border-subtle);
   padding: 40px;
   box-shadow: var(--shadow-sm);
@@ -384,17 +626,17 @@ a {
 }
 
 .location-intro {
-  font-size: 0.9375rem;
+  font-size: 0.95rem;
   color: var(--text-muted);
   line-height: 1.6;
   margin-bottom: 24px;
 }
 
 .info-card {
-  background: var(--bg-page);
+  background: #FFFFFF;
   border-radius: var(--radius-md);
   border: 1px solid var(--border-subtle);
-  padding: 20px;
+  padding: 22px;
   display: flex;
   flex-direction: column;
   gap: 18px;
@@ -404,12 +646,12 @@ a {
 .info-row {
   display: flex;
   align-items: flex-start;
-  gap: 12px;
+  gap: 14px;
 }
 
 .info-icon {
-  width: 20px;
-  height: 20px;
+  width: 22px;
+  height: 22px;
   color: var(--brand-cyan);
   margin-top: 2px;
   flex-shrink: 0;
@@ -425,9 +667,14 @@ a {
 }
 
 .info-row p {
-  font-size: 0.9375rem;
+  font-size: 0.95rem;
   color: var(--text-main);
   line-height: 1.45;
+}
+
+.highlight-schedule {
+  color: var(--brand-cyan);
+  font-weight: 600;
 }
 
 .location-actions {
@@ -444,7 +691,7 @@ a {
   gap: 8px;
   background-color: var(--whatsapp);
   color: #FFFFFF;
-  padding: 12px 20px;
+  padding: 13px 22px;
   border-radius: var(--radius-md);
   font-size: 0.875rem;
   font-weight: 700;
@@ -461,21 +708,21 @@ a {
   background-color: #FFFFFF;
   border: 1px solid var(--border-subtle);
   color: var(--text-main);
-  padding: 12px 18px;
+  padding: 13px 20px;
   border-radius: var(--radius-md);
   font-size: 0.875rem;
   font-weight: 600;
 }
 
 .btn-map-link:hover {
-  background-color: var(--bg-page);
+  background-color: var(--bg-subtle);
   border-color: #CBD5E1;
 }
 
 /* Google Maps Iframe Container */
 .map-wrapper {
   background: #FFFFFF;
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-xl);
   border: 1px solid var(--border-subtle);
   overflow: hidden;
   box-shadow: var(--shadow-md);
@@ -491,12 +738,12 @@ a {
 }
 
 /* ==========================================================================
-   FOOTER (Elegante & Compacto)
+   FOOTER Institucional & Escuro
    ========================================================================== */
 .site-footer {
   background-color: var(--bg-dark);
   color: var(--text-light);
-  padding: 28px 0;
+  padding: 36px 0 32px;
   border-top: 1px solid rgba(255, 255, 255, 0.08);
   font-size: 0.875rem;
 }
@@ -506,35 +753,35 @@ a {
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
-  gap: 20px;
+  gap: 24px;
 }
 
-.footer-left strong {
-  color: #FFFFFF;
+.footer-left {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.footer-logo-img {
+  height: 38px;
+  width: auto;
 }
 
 .footer-left span {
-  display: block;
-  font-size: 0.775rem;
+  font-size: 0.8125rem;
   color: #64748B;
-  margin-top: 2px;
 }
 
-.footer-center .footer-phone-link {
+.footer-service-label {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  color: #FFFFFF;
-  font-weight: 700;
-  background: var(--bg-dark-card);
-  padding: 8px 16px;
+  font-size: 0.84rem;
+  color: #CBD5E1;
+  background: var(--bg-dark-surface);
+  padding: 8px 18px;
   border-radius: var(--radius-full);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.footer-center .footer-phone-link:hover {
-  border-color: var(--whatsapp);
-  color: #38BDF8;
+  border: 1px solid var(--border-dark);
 }
 
 .footer-right {
@@ -547,11 +794,12 @@ a {
 }
 
 .footer-tech strong {
-  color: #F59E0B;
+  color: #38BDF8;
 }
 
 /* ==========================================================================
-   Floating WhatsApp Button
+   Floating WhatsApp Button (Regra de 1 Botão Único por Vez)
+   Inicia Oculto; Só aparece quando o CTA do Hero sai da tela via JS
    ========================================================================== */
 .floating-whatsapp {
   position: fixed;
@@ -563,18 +811,35 @@ a {
   gap: 10px;
   background-color: var(--whatsapp);
   color: #FFFFFF;
-  padding: 12px 20px;
+  padding: 13px 22px;
   border-radius: var(--radius-full);
-  box-shadow: 0 10px 24px var(--whatsapp-glow);
+  box-shadow: 0 10px 28px var(--whatsapp-glow);
   font-weight: 700;
-  font-size: 0.875rem;
-  transition: all var(--transition);
+  font-size: 0.9rem;
+  
+  /* Estado Inicial Oculto */
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(24px) scale(0.92);
+  transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              visibility 0.35s,
+              background-color var(--transition);
+}
+
+/* Quando ativado via IntersectionObserver */
+.floating-whatsapp.is-visible {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateY(0) scale(1);
 }
 
 .floating-whatsapp:hover {
   background-color: var(--whatsapp-hover);
-  transform: translateY(-3px);
-  box-shadow: 0 14px 30px rgba(37, 211, 102, 0.45);
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 14px 34px rgba(37, 211, 102, 0.5);
 }
 
 .floating-icon {
@@ -583,17 +848,23 @@ a {
 }
 
 /* ==========================================================================
-   Responsividade
+   Responsividade Fina para Breakpoints
    ========================================================================== */
-@media (max-width: 992px) {
+@media (max-width: 1024px) {
   .hero-title {
-    font-size: 2.4rem;
+    font-size: 2.6rem;
   }
 
-  .services-strip {
+  .benefits-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 
+  .benefit-card:last-child {
+    grid-column: span 2;
+  }
+}
+
+@media (max-width: 900px) {
   .location-grid {
     grid-template-columns: 1fr;
   }
@@ -605,35 +876,64 @@ a {
   .map-wrapper iframe {
     min-height: 380px;
   }
+
+  .service-quote-banner {
+    flex-direction: column;
+    text-align: center;
+    padding: 30px;
+  }
+
+  .btn-banner-cta {
+    width: 100%;
+    justify-content: center;
+  }
 }
 
 @media (max-width: 768px) {
-  .status-indicator {
+  /* No Mobile: esconde o botão do header para garantir RIGOROSAMENTE apenas 1 CTA em tela */
+  .btn-header-whatsapp {
     display: none;
   }
 
+  .status-indicator {
+    font-size: 0.75rem;
+    padding: 5px 10px;
+  }
+
+  .brand-logo-img {
+    height: 40px;
+  }
+
+  /* Hero Mobile: Proporção e Scrim Vertical para Legibilidade Total */
   .hero-fold {
-    padding: 46px 0 42px;
+    min-height: auto;
+    padding: 48px 0 44px;
     background-image:
       linear-gradient(180deg,
-        rgba(255, 255, 255, 0.93) 0%,
-        rgba(255, 255, 255, 0.98) 100%
+        rgba(8, 19, 37, 0.92) 0%,
+        rgba(8, 19, 37, 0.95) 45%,
+        rgba(8, 19, 37, 0.98) 100%
       ),
       url('assets/hero-bg.jpg');
-    background-position: center top;
+    background-position: 72% 20%;
+    background-size: cover;
   }
 
   .hero-title {
-    font-size: 1.95rem;
+    font-size: 2.15rem;
+    line-height: 1.18;
   }
 
   .hero-description {
     font-size: 1.05rem;
+    margin-bottom: 28px;
   }
 
   .hero-cta-group {
     flex-direction: column;
     width: 100%;
+    gap: 12px;
+    margin-bottom: 32px;
   }
 
   .btn-whatsapp-main, .btn-phone-direct {
@@ -644,6 +944,28 @@ a {
 
   .services-strip {
     grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .benefits-fold {
+    padding: 60px 0;
+  }
+
+  .section-heading {
+    font-size: 1.95rem;
+  }
+
+  .benefits-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .benefit-card:last-child {
+    grid-column: span 1;
+  }
+
+  .location-fold {
+    padding: 60px 0;
   }
 
   .location-details {
@@ -653,21 +975,22 @@ a {
   .footer-container {
     flex-direction: column;
     text-align: center;
-    gap: 16px;
+    gap: 18px;
+  }
+
+  .footer-left {
+    align-items: center;
   }
 
   .footer-right {
     text-align: center;
   }
 
-  .floating-whatsapp span {
-    display: none;
-  }
-
+  /* Floating WhatsApp no Mobile */
   .floating-whatsapp {
-    padding: 14px;
-    border-radius: 50%;
     bottom: 18px;
     right: 18px;
+    padding: 12px 18px;
+    font-size: 0.85rem;
   }
 }

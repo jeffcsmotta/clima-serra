@@ -1,6 +1,6 @@
 /**
  * Clima Serra - Climatização & Ar Condicionado
- * Client Interaction & WhatsApp Routing Engine
+ * Engine de Interação, Controle de CTA Único e Roteamento WhatsApp
  */
 
 (function () {
@@ -8,19 +8,19 @@
 
   const HUGO_PHONE = '555491678733'; // +55 54 9167-8733
 
-  // Pre-configured conversion messages for WhatsApp
+  // Mensagens pré-configuradas sem formalidades desnecessárias
   const WHATSAPP_MESSAGES = {
-    urgente: 'Olá, Sr. Hugo! Preciso de conserto ou diagnóstico urgente para meu ar condicionado em Caxias do Sul.',
-    higienizacao: 'Olá, Sr. Hugo! Gostaria de agendar a higienização e limpeza profunda do meu ar condicionado.',
-    instalacao: 'Olá, Sr. Hugo! Gostaria de solicitar um orçamento para instalação de ar condicionado.',
-    gas: 'Olá, Sr. Hugo! Suspeito que meu ar condicionado precisa de recarga de gás ou conserto de vazamento.',
-    venda: 'Olá, Sr. Hugo! Gostaria de saber sobre os aparelhos de ar condicionado disponíveis e consultoria para o meu espaço.',
-    geral: 'Olá, Sr. Hugo! Encontrei a Clima Serra pelo site e gostaria de um atendimento para ar condicionado em Caxias do Sul.'
+    urgente: 'Olá, Hugo! Preciso de conserto ou diagnóstico urgente para meu ar condicionado em Caxias do Sul.',
+    higienizacao: 'Olá, Hugo! Gostaria de agendar a higienização e limpeza profunda do meu ar condicionado.',
+    instalacao: 'Olá, Hugo! Gostaria de solicitar um orçamento para instalação de ar condicionado.',
+    gas: 'Olá, Hugo! Suspeito que meu ar condicionado precisa de recarga de gás ou conserto de vazamento.',
+    venda: 'Olá, Hugo! Gostaria de saber sobre os aparelhos disponíveis e consultoria técnica.',
+    geral: 'Olá, Hugo! Encontrei a Clima Serra pelo site e gostaria de tirar uma dúvida sobre ar condicionado.'
   };
 
   /**
-   * Dispatches direct WhatsApp conversation with Sr. Hugo
-   * @param {string} intent - Key from WHATSAPP_MESSAGES
+   * Aciona conversa direta com o Hugo no WhatsApp
+   * @param {string} intent - Chave de WHATSAPP_MESSAGES
    */
   window.contactHugo = function (intent) {
     const text = WHATSAPP_MESSAGES[intent] || WHATSAPP_MESSAGES.geral;
@@ -30,36 +30,56 @@
   };
 
   /**
-   * Initializes FAQ accordion toggling
+   * REGRA DE BOTÃO ÚNICO EM TELA:
+   * Monitora o CTA principal do Hero. O botão flutuante SÓ aparece
+   * quando o CTA do Hero rolar para fora da área visível do usuário.
    */
-  function initFaqAccordion() {
-    const faqItems = document.querySelectorAll('.faq-item');
-    if (!faqItems.length) return;
+  function initFloatingCtaObserver() {
+    const heroCtaGroup = document.getElementById('hero-cta-group');
+    const floatingBtn = document.getElementById('floating-whatsapp');
 
-    faqItems.forEach((item) => {
-      const questionBtn = item.querySelector('.faq-question');
-      if (!questionBtn) return;
+    if (!heroCtaGroup || !floatingBtn) return;
 
-      questionBtn.addEventListener('click', () => {
-        const isActive = item.classList.contains('active');
-
-        // Close all other items for clean accordion behavior
-        faqItems.forEach((other) => {
-          other.classList.remove('active');
-          const otherBtn = other.querySelector('.faq-question');
-          if (otherBtn) otherBtn.setAttribute('aria-expanded', 'false');
-        });
-
-        if (!isActive) {
-          item.classList.add('active');
-          questionBtn.setAttribute('aria-expanded', 'true');
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            // Se o CTA do Hero estiver visível na tela, esconda o flutuante
+            if (entry.isIntersecting) {
+              floatingBtn.classList.remove('is-visible');
+            } else {
+              // Só mostra se o usuário rolou para baixo do Hero
+              const rect = heroCtaGroup.getBoundingClientRect();
+              if (rect.top < 0) {
+                floatingBtn.classList.add('is-visible');
+              } else {
+                floatingBtn.classList.remove('is-visible');
+              }
+            }
+          });
+        },
+        {
+          root: null,
+          threshold: 0.1
         }
-      });
-    });
+      );
+
+      observer.observe(heroCtaGroup);
+    } else {
+      // Fallback para navegadores sem suporte a IntersectionObserver
+      window.addEventListener('scroll', () => {
+        const rect = heroCtaGroup.getBoundingClientRect();
+        if (rect.bottom < 0) {
+          floatingBtn.classList.add('is-visible');
+        } else {
+          floatingBtn.classList.remove('is-visible');
+        }
+      }, { passive: true });
+    }
   }
 
   /**
-   * Initializes Lucide icons safely when DOM is ready
+   * Inicialização segura dos ícones Lucide
    */
   function initIcons() {
     if (window.lucide && typeof window.lucide.createIcons === 'function') {
@@ -67,34 +87,14 @@
     }
   }
 
-  /**
-   * Mobile menu toggle handler
-   */
-  function initMobileMenu() {
-    const toggleBtn = document.querySelector('.mobile-menu-toggle');
-    const navMenu = document.querySelector('.nav-menu');
-
-    if (!toggleBtn || !navMenu) return;
-
-    toggleBtn.addEventListener('click', () => {
-      const isVisible = navMenu.style.display === 'flex';
-      navMenu.style.display = isVisible ? 'none' : 'flex';
-      navMenu.style.flexDirection = 'column';
-      navMenu.style.position = 'absolute';
-      navMenu.style.top = '100%';
-      navMenu.style.left = '0';
-      navMenu.style.right = '0';
-      navMenu.style.backgroundColor = '#FFFFFF';
-      navMenu.style.padding = '20px';
-      navMenu.style.boxShadow = '0 10px 20px rgba(0,0,0,0.1)';
-      navMenu.style.borderBottom = '1px solid #E2E8F0';
+  // Execução no carregamento da página
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+      initIcons();
+      initFloatingCtaObserver();
     });
-  }
-
-  // Lifecycle boot
-  document.addEventListener('DOMContentLoaded', () => {
-    initFaqAccordion();
+  } else {
     initIcons();
-    initMobileMenu();
-  });
+    initFloatingCtaObserver();
+  }
 })();
