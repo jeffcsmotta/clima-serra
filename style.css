@@ -1,59 +1,45 @@
 /* ==========================================================================
    Clima Serra - Climatização & Ar Condicionado (Caxias do Sul - RS)
-   Design System & Master Stylesheet
+   Design System: 2 Dobras + 1 Footer (Direto, Simples & Elegante)
    ========================================================================== */
 
 :root {
   --font-display: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 
-  /* Color Palette: Thermal Balance (Arctic Cool + Deep Navy + Warning/Warm Accent) */
+  /* Palette: Pure Clean Architecture */
   --bg-page: #F8FAFC;
   --bg-surface: #FFFFFF;
-  --bg-surface-alt: #F1F5F9;
-  --bg-navy: #090E1A;
-  --bg-navy-elevated: #111A2E;
-  --bg-navy-card: #17233D;
+  --bg-dark: #0A1120;
+  --bg-dark-card: #131E36;
 
-  --text-primary: #0F172A;
-  --text-secondary: #475569;
-  --text-muted: #64748B;
-  --text-inverse: #FFFFFF;
-  --text-inverse-muted: #94A3B8;
+  --text-main: #0F172A;
+  --text-muted: #475569;
+  --text-light: #94A3B8;
 
   --brand-cyan: #0284C7;
   --brand-cyan-light: #38BDF8;
-  --brand-cyan-surface: #E0F2FE;
-  --brand-cyan-deep: #0369A1;
+  --brand-cyan-bg: #E0F2FE;
 
-  --brand-warm: #EA580C;
-  --brand-warm-surface: #FFEDD5;
+  --whatsapp: #25D366;
+  --whatsapp-hover: #1EBE5D;
+  --whatsapp-glow: rgba(37, 211, 102, 0.28);
 
-  --whatsapp-green: #25D366;
-  --whatsapp-dark: #1EBE5D;
-  --whatsapp-glow: rgba(37, 211, 102, 0.25);
-
-  --border-light: #E2E8F0;
-  --border-subtle: rgba(15, 23, 42, 0.08);
-  --border-navy: rgba(255, 255, 255, 0.1);
-
+  --border-subtle: #E2E8F0;
   --radius-sm: 8px;
   --radius-md: 14px;
   --radius-lg: 20px;
   --radius-full: 9999px;
 
   --shadow-sm: 0 2px 8px rgba(15, 23, 42, 0.04);
-  --shadow-md: 0 10px 25px -4px rgba(15, 23, 42, 0.06);
-  --shadow-lg: 0 20px 35px -5px rgba(15, 23, 42, 0.08);
-  --shadow-glow: 0 12px 30px rgba(2, 132, 199, 0.2);
+  --shadow-md: 0 12px 28px -4px rgba(15, 23, 42, 0.08);
+  --shadow-lg: 0 20px 40px -8px rgba(15, 23, 42, 0.12);
 
-  --container-width: 1200px;
-  --container-padding: 24px;
-  --transition-fast: 0.18s ease;
-  --transition-normal: 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+  --container-max: 1160px;
+  --container-pad: 24px;
+  --transition: 0.22s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Reset & Base Setup */
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
@@ -64,13 +50,12 @@ html {
   scroll-behavior: smooth;
   font-size: 16px;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
   font-family: var(--font-body);
   background-color: var(--bg-page);
-  color: var(--text-primary);
+  color: var(--text-main);
   line-height: 1.6;
   overflow-x: hidden;
 }
@@ -83,191 +68,33 @@ img, svg {
 a {
   color: inherit;
   text-decoration: none;
-  transition: color var(--transition-fast);
-}
-
-button {
-  cursor: pointer;
-  border: none;
-  background: none;
-  font-family: inherit;
+  transition: all var(--transition);
 }
 
 .container {
   width: 100%;
-  max-width: var(--container-width);
+  max-width: var(--container-max);
   margin-left: auto;
   margin-right: auto;
-  padding-left: var(--container-padding);
-  padding-right: var(--container-padding);
-}
-
-/* Typography Helpers */
-h1, h2, h3, h4 {
-  font-family: var(--font-display);
-  color: var(--text-primary);
-  font-weight: 800;
-  line-height: 1.15;
-  letter-spacing: -0.02em;
-}
-
-/* Section Common Layout */
-.section-padding {
-  padding: 80px 0;
-}
-
-.section-header {
-  text-align: center;
-  max-width: 680px;
-  margin: 0 auto 52px;
-}
-
-.badge-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 6px 14px;
-  background-color: var(--brand-cyan-surface);
-  color: var(--brand-cyan-deep);
-  border-radius: var(--radius-full);
-  font-size: 0.8125rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  margin-bottom: 16px;
-}
-
-.badge-pill.warm {
-  background-color: var(--brand-warm-surface);
-  color: var(--brand-warm);
-}
-
-.section-title {
-  font-size: 2.25rem;
-  margin-bottom: 16px;
-}
-
-.section-subtitle {
-  font-size: 1.0625rem;
-  color: var(--text-secondary);
-  line-height: 1.6;
-}
-
-/* Buttons System */
-.btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  padding: 14px 26px;
-  font-size: 0.9375rem;
-  font-weight: 700;
-  border-radius: var(--radius-md);
-  transition: all var(--transition-normal);
-  text-align: center;
-}
-
-.btn-primary {
-  background-color: var(--brand-cyan);
-  color: var(--text-inverse);
-  box-shadow: var(--shadow-glow);
-}
-
-.btn-primary:hover {
-  background-color: var(--brand-cyan-deep);
-  transform: translateY(-2px);
-  box-shadow: 0 16px 36px rgba(2, 132, 199, 0.28);
-}
-
-.btn-whatsapp {
-  background-color: var(--whatsapp-green);
-  color: var(--text-inverse);
-  box-shadow: 0 10px 25px var(--whatsapp-glow);
-}
-
-.btn-whatsapp:hover {
-  background-color: var(--whatsapp-dark);
-  transform: translateY(-2px);
-  box-shadow: 0 14px 30px rgba(37, 211, 102, 0.35);
-}
-
-.btn-secondary {
-  background-color: var(--bg-surface);
-  color: var(--text-primary);
-  border: 1px solid var(--border-light);
-}
-
-.btn-secondary:hover {
-  background-color: var(--bg-surface-alt);
-  border-color: #CBD5E1;
-  transform: translateY(-2px);
-}
-
-.btn-icon {
-  width: 20px;
-  height: 20px;
+  padding-left: var(--container-pad);
+  padding-right: var(--container-pad);
 }
 
 /* ==========================================================================
-   Header & Top Announcement Strip
+   Header (Compact & Clean)
    ========================================================================== */
-.top-announcement-strip {
-  background-color: var(--bg-navy);
-  color: var(--text-inverse-muted);
-  font-size: 0.8125rem;
-  padding: 8px 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-.strip-inner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 12px;
-}
-
-.strip-location {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.strip-location strong {
-  color: var(--text-inverse);
-}
-
-.strip-direct-call {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-}
-
-.strip-direct-call a {
-  color: #38BDF8;
-  font-weight: 700;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.strip-direct-call a:hover {
-  color: #7DD3FC;
-  text-decoration: underline;
-}
-
 .site-header {
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border-subtle);
   position: sticky;
   top: 0;
   z-index: 100;
-  background: rgba(255, 255, 255, 0.92);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  border-bottom: 1px solid var(--border-subtle);
-  padding: 14px 0;
+  padding: 12px 0;
 }
 
-.nav-wrapper {
+.nav-container {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -276,744 +103,425 @@ h1, h2, h3, h4 {
 .brand-link {
   display: flex;
   align-items: center;
-  gap: 12px;
 }
 
 .brand-logo-img {
-  height: 48px;
+  height: 44px;
   width: auto;
 }
 
-.nav-menu {
+.header-contact {
   display: flex;
   align-items: center;
-  gap: 28px;
-  list-style: none;
+  gap: 16px;
 }
 
-.nav-link {
-  font-size: 0.9375rem;
+.status-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.8125rem;
   font-weight: 600;
-  color: var(--text-secondary);
+  color: var(--text-muted);
+  background: var(--bg-page);
+  padding: 6px 12px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--border-subtle);
 }
 
-.nav-link:hover {
-  color: var(--brand-cyan);
+.status-dot {
+  width: 8px;
+  height: 8px;
+  background-color: var(--whatsapp);
+  border-radius: 50%;
+  animation: pulse-dot 1.8s infinite;
 }
 
-.nav-cta-group {
-  display: flex;
+@keyframes pulse-dot {
+  0% { transform: scale(0.95); opacity: 0.8; }
+  50% { transform: scale(1.2); opacity: 1; }
+  100% { transform: scale(0.95); opacity: 0.8; }
+}
+
+.btn-header-whatsapp {
+  display: inline-flex;
   align-items: center;
-  gap: 12px;
+  gap: 8px;
+  background-color: var(--whatsapp);
+  color: #FFFFFF;
+  padding: 8px 16px;
+  border-radius: var(--radius-full);
+  font-size: 0.875rem;
+  font-weight: 700;
+  box-shadow: 0 4px 14px var(--whatsapp-glow);
 }
 
-.mobile-menu-toggle {
-  display: none;
-  padding: 8px;
-  color: var(--text-primary);
+.btn-header-whatsapp:hover {
+  background-color: var(--whatsapp-hover);
+  transform: translateY(-1px);
 }
 
 /* ==========================================================================
-   Hero Section
+   DOBRA 1: Hero Section
    ========================================================================== */
-.hero-section {
-  padding: 60px 0 80px;
-  background: radial-gradient(circle at 85% 15%, rgba(56, 189, 248, 0.12) 0%, transparent 55%),
+.hero-fold {
+  padding: 68px 0 60px;
+  background: radial-gradient(circle at 80% 20%, rgba(56, 189, 248, 0.1) 0%, transparent 60%),
               linear-gradient(180deg, #FFFFFF 0%, #F8FAFC 100%);
   border-bottom: 1px solid var(--border-subtle);
 }
 
-.hero-grid {
-  display: grid;
-  grid-template-columns: 1.15fr 0.85fr;
-  gap: 56px;
+.hero-box {
+  max-width: 880px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.hero-pill {
+  display: inline-flex;
   align-items: center;
-}
-
-.hero-content h1 {
-  font-size: 2.85rem;
-  line-height: 1.12;
-  margin-bottom: 20px;
-  letter-spacing: -0.03em;
-}
-
-.hero-content h1 span.highlight {
+  gap: 8px;
+  padding: 6px 14px;
+  background-color: var(--brand-cyan-bg);
   color: var(--brand-cyan);
-  display: inline-block;
+  border-radius: var(--radius-full);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.hero-title {
+  font-family: var(--font-display);
+  font-size: 3rem;
+  font-weight: 900;
+  line-height: 1.12;
+  letter-spacing: -0.03em;
+  color: var(--text-main);
+  margin-bottom: 20px;
+}
+
+.hero-title .highlight {
+  color: var(--brand-cyan);
 }
 
 .hero-description {
-  font-size: 1.125rem;
-  color: var(--text-secondary);
-  margin-bottom: 32px;
-  max-width: 580px;
-  line-height: 1.6;
-}
-
-.hero-actions {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  flex-wrap: wrap;
-  margin-bottom: 36px;
-}
-
-.trust-bullets {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
-  padding-top: 24px;
-  border-top: 1px solid var(--border-light);
-}
-
-.bullet-item {
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
-}
-
-.bullet-icon {
-  width: 22px;
-  height: 22px;
-  color: var(--brand-cyan);
-  flex-shrink: 0;
-  margin-top: 2px;
-}
-
-.bullet-item strong {
-  display: block;
-  font-size: 0.875rem;
-  font-weight: 700;
-  color: var(--text-primary);
-}
-
-.bullet-item span {
-  font-size: 0.775rem;
+  font-size: 1.1875rem;
   color: var(--text-muted);
+  line-height: 1.65;
+  margin-bottom: 36px;
+  max-width: 740px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-/* Specialist Card (Sr. Hugo) */
-.specialist-card {
-  background: var(--bg-navy);
-  color: var(--text-inverse);
-  border-radius: var(--radius-lg);
-  padding: 36px;
-  border: 1px solid var(--border-navy);
-  box-shadow: var(--shadow-lg);
-  position: relative;
-  overflow: hidden;
-}
-
-.specialist-card::before {
-  content: '';
-  position: absolute;
-  top: -80px;
-  right: -80px;
-  width: 180px;
-  height: 180px;
-  background: radial-gradient(circle, rgba(56, 189, 248, 0.25) 0%, transparent 70%);
-  pointer-events: none;
-}
-
-.card-status-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 24px;
-}
-
-.pulse-status {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 0.8125rem;
-  font-weight: 700;
-  color: #38BDF8;
-  background: rgba(56, 189, 248, 0.12);
-  padding: 5px 12px;
-  border-radius: var(--radius-full);
-}
-
-.pulse-dot {
-  width: 8px;
-  height: 8px;
-  background-color: var(--whatsapp-green);
-  border-radius: 50%;
-  box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
-  animation: pulse-ring 1.8s infinite;
-}
-
-@keyframes pulse-ring {
-  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
-  70% { transform: scale(1); box-shadow: 0 0 0 8px rgba(37, 211, 102, 0); }
-  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
-}
-
-.technician-profile {
-  display: flex;
-  align-items: center;
-  gap: 18px;
-  margin-bottom: 24px;
-}
-
-.technician-avatar {
-  width: 68px;
-  height: 68px;
-  background: var(--bg-navy-card);
-  border: 2px solid #38BDF8;
-  border-radius: 18px;
+.hero-cta-group {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #38BDF8;
-  font-size: 1.75rem;
-  font-family: var(--font-display);
-  font-weight: 900;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 44px;
 }
 
-.technician-info h3 {
-  color: #FFFFFF;
-  font-size: 1.35rem;
-  margin-bottom: 4px;
-}
-
-.technician-info p {
-  color: var(--text-inverse-muted);
-  font-size: 0.875rem;
-}
-
-.specialist-perks {
-  list-style: none;
-  margin-bottom: 28px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.specialist-perks li {
-  display: flex;
+/* WhatsApp Main Button */
+.btn-whatsapp-main {
+  display: inline-flex;
   align-items: center;
-  gap: 10px;
-  font-size: 0.875rem;
-  color: #E2E8F0;
+  gap: 14px;
+  background-color: var(--whatsapp);
+  color: #FFFFFF;
+  padding: 16px 32px;
+  border-radius: var(--radius-md);
+  box-shadow: 0 12px 28px var(--whatsapp-glow);
+  text-align: left;
 }
 
-.specialist-perks i {
-  color: #38BDF8;
-  width: 18px;
-  height: 18px;
+.btn-whatsapp-main:hover {
+  background-color: var(--whatsapp-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 16px 36px rgba(37, 211, 102, 0.4);
+}
+
+.btn-icon-lg {
+  width: 28px;
+  height: 28px;
   flex-shrink: 0;
 }
 
-.specialist-card .btn-whatsapp {
-  width: 100%;
+.cta-action {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 1.0625rem;
+  font-weight: 800;
+  line-height: 1.2;
 }
 
-/* ==========================================================================
-   Quick Problem Selector Strip (Interactive Triage)
-   ========================================================================== */
-.triage-section {
-  background-color: #FFFFFF;
-  padding: 44px 0;
-  border-bottom: 1px solid var(--border-subtle);
-}
-
-.triage-title {
-  text-align: center;
-  font-size: 1.125rem;
-  color: var(--text-secondary);
-  margin-bottom: 24px;
+.cta-phone {
+  display: block;
+  font-size: 0.8125rem;
+  opacity: 0.92;
   font-weight: 600;
 }
 
-.triage-pills {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  flex-wrap: wrap;
-}
-
-.triage-btn {
+/* Direct Phone Button */
+.btn-phone-direct {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  padding: 12px 20px;
-  background-color: var(--bg-page);
-  border: 1px solid var(--border-light);
-  border-radius: var(--radius-full);
-  font-size: 0.875rem;
-  font-weight: 600;
-  color: var(--text-primary);
-  transition: all var(--transition-fast);
+  gap: 10px;
+  background-color: #FFFFFF;
+  color: var(--text-main);
+  border: 1px solid var(--border-subtle);
+  padding: 18px 26px;
+  border-radius: var(--radius-md);
+  font-family: var(--font-display);
+  font-size: 0.9375rem;
+  font-weight: 700;
 }
 
-.triage-btn:hover {
-  background-color: var(--brand-cyan-surface);
-  border-color: var(--brand-cyan);
-  color: var(--brand-cyan-deep);
+.btn-phone-direct:hover {
+  background-color: #F1F5F9;
+  border-color: #CBD5E1;
   transform: translateY(-2px);
 }
 
-.triage-btn i {
+.btn-icon {
+  width: 18px;
+  height: 18px;
+  color: var(--brand-cyan);
+}
+
+/* 4-Pill Services Strip */
+.services-strip {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  padding-top: 28px;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.service-pill {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: #FFFFFF;
+  border: 1px solid var(--border-subtle);
+  padding: 12px 14px;
+  border-radius: var(--radius-md);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: var(--text-main);
+  box-shadow: var(--shadow-sm);
+}
+
+.service-pill i {
   width: 16px;
   height: 16px;
   color: var(--brand-cyan);
+  flex-shrink: 0;
 }
 
 /* ==========================================================================
-   Services Grid
+   DOBRA 2: Base Técnica, Atendimento & Google Maps
    ========================================================================== */
-.services-section {
+.location-fold {
+  padding: 72px 0 80px;
   background-color: var(--bg-page);
 }
 
-.services-grid {
+.location-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
-  gap: 24px;
+  grid-template-columns: 1fr 1fr;
+  gap: 36px;
+  align-items: stretch;
 }
 
-.service-card {
-  background: var(--bg-surface);
+.location-details {
+  background: #FFFFFF;
   border-radius: var(--radius-lg);
-  padding: 32px 28px;
   border: 1px solid var(--border-subtle);
+  padding: 40px;
   box-shadow: var(--shadow-sm);
-  transition: all var(--transition-normal);
   display: flex;
   flex-direction: column;
 }
 
-.service-card:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-md);
+.location-details h2 {
+  font-family: var(--font-display);
+  font-size: 2.15rem;
+  font-weight: 800;
+  margin-bottom: 12px;
+  color: var(--text-main);
+  letter-spacing: -0.02em;
+}
+
+.location-intro {
+  font-size: 0.9375rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+
+.info-card {
+  background: var(--bg-page);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-subtle);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin-bottom: 28px;
+}
+
+.info-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.info-icon {
+  width: 20px;
+  height: 20px;
+  color: var(--brand-cyan);
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+
+.info-row strong {
+  display: block;
+  font-size: 0.8125rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
+  margin-bottom: 2px;
+}
+
+.info-row p {
+  font-size: 0.9375rem;
+  color: var(--text-main);
+  line-height: 1.45;
+}
+
+.location-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: auto;
+}
+
+.btn-whatsapp-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background-color: var(--whatsapp);
+  color: #FFFFFF;
+  padding: 12px 20px;
+  border-radius: var(--radius-md);
+  font-size: 0.875rem;
+  font-weight: 700;
+}
+
+.btn-whatsapp-secondary:hover {
+  background-color: var(--whatsapp-hover);
+}
+
+.btn-map-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background-color: #FFFFFF;
+  border: 1px solid var(--border-subtle);
+  color: var(--text-main);
+  padding: 12px 18px;
+  border-radius: var(--radius-md);
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.btn-map-link:hover {
+  background-color: var(--bg-page);
   border-color: #CBD5E1;
 }
 
-.service-icon-box {
-  width: 54px;
-  height: 54px;
-  border-radius: var(--radius-md);
-  background-color: var(--brand-cyan-surface);
-  color: var(--brand-cyan);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 22px;
-}
-
-.service-card h3 {
-  font-size: 1.25rem;
-  margin-bottom: 12px;
-}
-
-.service-card p {
-  color: var(--text-secondary);
-  font-size: 0.9375rem;
-  line-height: 1.55;
-  margin-bottom: 22px;
-  flex-grow: 1;
-}
-
-.service-card-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 0.875rem;
-  font-weight: 700;
-  color: var(--brand-cyan);
-}
-
-.service-card-link:hover {
-  color: var(--brand-cyan-deep);
-  gap: 10px;
-}
-
-/* ==========================================================================
-   Future Sales & Equipment Section (Transição Comercial)
-   ========================================================================== */
-.future-sales-section {
-  padding: 60px 0;
-  background: linear-gradient(135deg, #090E1A 0%, #17233D 100%);
-  color: var(--text-inverse);
-  position: relative;
-  overflow: hidden;
-}
-
-.future-sales-box {
-  border: 1px solid var(--border-navy);
-  border-radius: var(--radius-lg);
-  padding: 48px;
-  background: rgba(255, 255, 255, 0.03);
-  backdrop-filter: blur(10px);
-  display: grid;
-  grid-template-columns: 1.2fr 0.8fr;
-  gap: 40px;
-  align-items: center;
-}
-
-.future-sales-content h2 {
-  color: #FFFFFF;
-  font-size: 2.15rem;
-  margin-bottom: 16px;
-}
-
-.future-sales-content p {
-  color: var(--text-inverse-muted);
-  font-size: 1rem;
-  margin-bottom: 28px;
-  line-height: 1.6;
-}
-
-.future-badges {
-  display: flex;
-  gap: 12px;
-  flex-wrap: wrap;
-  margin-bottom: 28px;
-}
-
-.future-tag {
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  padding: 6px 14px;
-  border-radius: var(--radius-full);
-  font-size: 0.8125rem;
-  color: #E2E8F0;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.future-tag i {
-  width: 14px;
-  height: 14px;
-  color: #38BDF8;
-}
-
-.future-sales-card {
-  background: var(--bg-navy-elevated);
-  border-radius: var(--radius-md);
-  padding: 28px;
-  border: 1px solid rgba(56, 189, 248, 0.25);
-  text-align: center;
-}
-
-.future-sales-card h4 {
-  color: #FFFFFF;
-  font-size: 1.15rem;
-  margin-bottom: 8px;
-}
-
-.future-sales-card p {
-  color: var(--text-inverse-muted);
-  font-size: 0.875rem;
-  margin-bottom: 20px;
-}
-
-/* ==========================================================================
-   Differentiators & Technical Rigor
-   ========================================================================== */
-.differentiators-section {
-  background-color: #FFFFFF;
-}
-
-.diff-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 32px;
-}
-
-.diff-card {
-  padding: 32px;
-  border-radius: var(--radius-lg);
-  background: var(--bg-page);
-  border: 1px solid var(--border-light);
-}
-
-.diff-number {
-  font-family: var(--font-display);
-  font-size: 2.5rem;
-  font-weight: 900;
-  color: #CBD5E1;
-  line-height: 1;
-  margin-bottom: 16px;
-}
-
-.diff-card h3 {
-  font-size: 1.25rem;
-  margin-bottom: 10px;
-}
-
-.diff-card p {
-  color: var(--text-secondary);
-  font-size: 0.9375rem;
-}
-
-/* ==========================================================================
-   Location & Caxias Coverage Section
-   ========================================================================== */
-.location-section {
-  background-color: var(--bg-page);
-}
-
-.location-box {
+/* Google Maps Iframe Container */
+.map-wrapper {
   background: #FFFFFF;
   border-radius: var(--radius-lg);
-  border: 1px solid var(--border-light);
+  border: 1px solid var(--border-subtle);
   overflow: hidden;
-  box-shadow: var(--shadow-sm);
-  display: grid;
-  grid-template-columns: 1.1fr 0.9fr;
+  box-shadow: var(--shadow-md);
+  min-height: 480px;
+  position: relative;
 }
 
-.location-info {
-  padding: 48px;
+.map-wrapper iframe {
+  width: 100%;
+  height: 100%;
+  min-height: 480px;
+  display: block;
 }
 
-.location-info h3 {
-  font-size: 1.75rem;
-  margin-bottom: 16px;
+/* ==========================================================================
+   FOOTER (Elegante & Compacto)
+   ========================================================================== */
+.site-footer {
+  background-color: var(--bg-dark);
+  color: var(--text-light);
+  padding: 28px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  font-size: 0.875rem;
 }
 
-.location-address-block {
+.footer-container {
   display: flex;
-  align-items: flex-start;
-  gap: 14px;
-  margin-bottom: 28px;
-  padding: 18px;
-  background: var(--bg-page);
-  border-radius: var(--radius-md);
-  border: 1px solid var(--border-light);
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
 }
 
-.location-address-block i {
-  color: var(--brand-cyan);
-  width: 24px;
-  height: 24px;
-  flex-shrink: 0;
+.footer-left strong {
+  color: #FFFFFF;
+}
+
+.footer-left span {
+  display: block;
+  font-size: 0.775rem;
+  color: #64748B;
   margin-top: 2px;
 }
 
-.location-address-block p {
-  font-size: 0.9375rem;
-  color: var(--text-primary);
-  line-height: 1.5;
-}
-
-.neighborhoods-title {
-  font-size: 0.9375rem;
-  font-weight: 700;
-  color: var(--text-primary);
-  margin-bottom: 12px;
-}
-
-.neighborhoods-tags {
-  display: flex;
-  flex-wrap: wrap;
+.footer-center .footer-phone-link {
+  display: inline-flex;
+  align-items: center;
   gap: 8px;
-  margin-bottom: 32px;
-}
-
-.neighborhood-tag {
-  font-size: 0.8125rem;
-  background: var(--bg-surface-alt);
-  color: var(--text-secondary);
-  padding: 4px 10px;
-  border-radius: var(--radius-sm);
-  font-weight: 500;
-}
-
-.location-map-mockup {
-  background: #0F172A;
   color: #FFFFFF;
-  padding: 48px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  position: relative;
-}
-
-.map-pin-icon {
-  width: 56px;
-  height: 56px;
-  color: #38BDF8;
-  margin-bottom: 16px;
-}
-
-.location-map-mockup h4 {
-  color: #FFFFFF;
-  font-size: 1.35rem;
-  margin-bottom: 8px;
-}
-
-.location-map-mockup p {
-  color: var(--text-inverse-muted);
-  font-size: 0.875rem;
-  margin-bottom: 24px;
-  max-width: 320px;
-}
-
-/* ==========================================================================
-   FAQ Section
-   ========================================================================== */
-.faq-section {
-  background-color: #FFFFFF;
-}
-
-.faq-list {
-  max-width: 760px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-.faq-item {
-  border: 1px solid var(--border-light);
-  border-radius: var(--radius-md);
-  overflow: hidden;
-  transition: border-color var(--transition-fast);
-}
-
-.faq-item.active {
-  border-color: var(--brand-cyan);
-}
-
-.faq-question {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 20px 24px;
-  background: #FFFFFF;
-  text-align: left;
-  font-family: var(--font-display);
-  font-size: 1.0625rem;
   font-weight: 700;
-  color: var(--text-primary);
+  background: var(--bg-dark-card);
+  padding: 8px 16px;
+  border-radius: var(--radius-full);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.faq-question i {
-  width: 20px;
-  height: 20px;
-  color: var(--text-muted);
-  transition: transform var(--transition-normal);
-}
-
-.faq-item.active .faq-question i {
-  transform: rotate(180deg);
-  color: var(--brand-cyan);
-}
-
-.faq-answer {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.3s cubic-bezier(0, 1, 0, 1), padding 0.3s ease;
-  padding: 0 24px;
-  color: var(--text-secondary);
-  font-size: 0.9375rem;
-  line-height: 1.6;
-}
-
-.faq-item.active .faq-answer {
-  max-height: 400px;
-  padding: 0 24px 20px 24px;
-}
-
-/* ==========================================================================
-   Final Conversion Banner
-   ========================================================================== */
-.final-cta-section {
-  background: linear-gradient(180deg, var(--bg-page) 0%, #E0F2FE 100%);
-  padding: 80px 0;
-  text-align: center;
-}
-
-.final-cta-box {
-  max-width: 680px;
-  margin: 0 auto;
-}
-
-.final-cta-box h2 {
-  font-size: 2.4rem;
-  margin-bottom: 16px;
-}
-
-.final-cta-box p {
-  font-size: 1.125rem;
-  color: var(--text-secondary);
-  margin-bottom: 32px;
-}
-
-/* ==========================================================================
-   Footer
-   ========================================================================== */
-.site-footer {
-  background-color: var(--bg-navy);
-  color: var(--text-inverse-muted);
-  padding: 60px 0 28px;
-  font-size: 0.875rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.06);
-}
-
-.footer-grid {
-  display: grid;
-  grid-template-columns: 1.5fr 1fr 1fr;
-  gap: 48px;
-  margin-bottom: 48px;
-}
-
-.footer-brand h4 {
-  color: #FFFFFF;
-  font-size: 1.25rem;
-  margin-bottom: 12px;
-}
-
-.footer-brand p {
-  line-height: 1.6;
-  max-width: 320px;
-}
-
-.footer-links h5, .footer-contact h5 {
-  color: #FFFFFF;
-  font-size: 0.9375rem;
-  font-weight: 700;
-  margin-bottom: 16px;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-}
-
-.footer-links ul {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.footer-links a:hover {
+.footer-center .footer-phone-link:hover {
+  border-color: var(--whatsapp);
   color: #38BDF8;
 }
 
-.footer-contact p {
-  margin-bottom: 8px;
-}
-
-.footer-bottom {
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
-  padding-top: 24px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 16px;
+.footer-right {
+  text-align: right;
   font-size: 0.8125rem;
 }
 
-.footer-bottom strong {
-  color: #FFFFFF;
+.footer-right span {
+  display: block;
+}
+
+.footer-tech strong {
+  color: #F59E0B;
 }
 
 /* ==========================================================================
@@ -1021,90 +529,102 @@ h1, h2, h3, h4 {
    ========================================================================== */
 .floating-whatsapp {
   position: fixed;
-  bottom: 28px;
-  right: 28px;
+  bottom: 24px;
+  right: 24px;
   z-index: 999;
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  background-color: var(--whatsapp-green);
+  background-color: var(--whatsapp);
   color: #FFFFFF;
-  padding: 14px 22px;
+  padding: 12px 20px;
   border-radius: var(--radius-full);
-  box-shadow: 0 12px 28px rgba(37, 211, 102, 0.4);
+  box-shadow: 0 10px 24px var(--whatsapp-glow);
   font-weight: 700;
-  font-size: 0.9375rem;
-  transition: all var(--transition-normal);
+  font-size: 0.875rem;
+  transition: all var(--transition);
 }
 
 .floating-whatsapp:hover {
-  background-color: var(--whatsapp-dark);
-  transform: translateY(-3px) scale(1.02);
-  box-shadow: 0 16px 36px rgba(37, 211, 102, 0.5);
-  color: #FFFFFF;
+  background-color: var(--whatsapp-hover);
+  transform: translateY(-3px);
+  box-shadow: 0 14px 30px rgba(37, 211, 102, 0.45);
 }
 
-.floating-whatsapp-icon {
-  width: 24px;
-  height: 24px;
-}
-
-.floating-badge {
-  width: 10px;
-  height: 10px;
-  background-color: #FFFFFF;
-  border-radius: 50%;
-  position: absolute;
-  top: 4px;
-  right: 4px;
-  border: 2px solid var(--whatsapp-green);
+.floating-icon {
+  width: 20px;
+  height: 20px;
 }
 
 /* ==========================================================================
-   Responsive Breakpoints
+   Responsividade
    ========================================================================== */
 @media (max-width: 992px) {
-  .hero-grid {
-    grid-template-columns: 1fr;
-    gap: 40px;
+  .hero-title {
+    font-size: 2.4rem;
   }
 
-  .future-sales-box {
-    grid-template-columns: 1fr;
-    padding: 32px;
+  .services-strip {
+    grid-template-columns: repeat(2, 1fr);
   }
 
-  .location-box {
+  .location-grid {
     grid-template-columns: 1fr;
   }
 
-  .footer-grid {
-    grid-template-columns: 1fr;
-    gap: 32px;
+  .map-wrapper {
+    min-height: 380px;
+  }
+
+  .map-wrapper iframe {
+    min-height: 380px;
   }
 }
 
 @media (max-width: 768px) {
-  .nav-menu {
+  .status-indicator {
     display: none;
   }
 
-  .mobile-menu-toggle {
-    display: block;
+  .hero-fold {
+    padding: 44px 0 40px;
   }
 
-  .strip-inner {
+  .hero-title {
+    font-size: 1.95rem;
+  }
+
+  .hero-description {
+    font-size: 1.05rem;
+  }
+
+  .hero-cta-group {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .btn-whatsapp-main, .btn-phone-direct {
+    width: 100%;
     justify-content: center;
     text-align: center;
   }
 
-  .hero-content h1 {
-    font-size: 2.2rem;
+  .services-strip {
+    grid-template-columns: 1fr;
   }
 
-  .trust-bullets {
-    grid-template-columns: 1fr;
-    gap: 14px;
+  .location-details {
+    padding: 24px;
+  }
+
+  .footer-container {
+    flex-direction: column;
+    text-align: center;
+    gap: 16px;
+  }
+
+  .footer-right {
+    text-align: center;
   }
 
   .floating-whatsapp span {
@@ -1112,9 +632,9 @@ h1, h2, h3, h4 {
   }
 
   .floating-whatsapp {
-    padding: 16px;
+    padding: 14px;
     border-radius: 50%;
-    bottom: 20px;
-    right: 20px;
+    bottom: 18px;
+    right: 18px;
   }
 }
