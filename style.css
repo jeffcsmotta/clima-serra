@@ -131,9 +131,17 @@ a {
   align-items: center;
 }
 
+.brand-link picture {
+  display: flex;
+  align-items: center;
+}
+
 .brand-logo-img {
   height: 48px;
   width: auto;
+  max-width: 100%;
+  object-fit: contain;
+  display: block;
 }
 
 .header-actions {
@@ -762,9 +770,22 @@ a {
   gap: 8px;
 }
 
+.footer-brand {
+  display: inline-flex;
+  align-items: center;
+}
+
+.footer-brand picture {
+  display: flex;
+  align-items: center;
+}
+
 .footer-logo-img {
   height: 38px;
   width: auto;
+  max-width: 100%;
+  object-fit: contain;
+  display: block;
 }
 
 .footer-left span {
