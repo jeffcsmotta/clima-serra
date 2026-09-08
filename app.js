@@ -8,14 +8,14 @@
 
   const HUGO_PHONE = '555491678733'; // +55 54 9167-8733
 
-  // Mensagens pré-configuradas sem formalidades desnecessárias
+  // Mensagens pré-configuradas com foco em instalação de ar condicionado
   const WHATSAPP_MESSAGES = {
-    urgente: 'Olá, Hugo! Preciso de conserto ou diagnóstico urgente para meu ar condicionado em Caxias do Sul.',
-    higienizacao: 'Olá, Hugo! Gostaria de agendar a higienização e limpeza profunda do meu ar condicionado.',
-    instalacao: 'Olá, Hugo! Gostaria de solicitar um orçamento para instalação de ar condicionado.',
-    gas: 'Olá, Hugo! Suspeito que meu ar condicionado precisa de recarga de gás ou conserto de vazamento.',
-    venda: 'Olá, Hugo! Gostaria de saber sobre os aparelhos disponíveis e consultoria técnica.',
-    geral: 'Olá, Hugo! Encontrei a Clima Serra pelo site e gostaria de tirar uma dúvida sobre ar condicionado.'
+    instalacao: 'Olá, Hugo! Gostaria de solicitar um orçamento para instalação de ar condicionado em Caxias do Sul.',
+    orcamento: 'Olá, Hugo! Comprei um aparelho de ar condicionado e gostaria de agendar a instalação.',
+    infraestrutura: 'Olá, Hugo! Preciso de uma avaliação técnica de ponto e infraestrutura para ar condicionado.',
+    visita: 'Olá, Hugo! Gostaria de agendar uma visita técnica para orçamento de instalação.',
+    higienizacao: 'Olá, Hugo! Gostaria de agendar a manutenção preventiva e higienização do meu ar condicionado.',
+    geral: 'Olá, Hugo! Encontrei a Clima Serra pelo site e gostaria de um orçamento para instalação de ar condicionado.'
   };
 
   /**

@@ -1,0 +1,27 @@
+# Cloudflare Pages Headers Configuration
+# Clima Serra (climaserra.com.br)
+
+# Regras globais de segurança
+/*
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: SAMEORIGIN
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: geolocation=(self), microphone=(), camera=()
+
+# Documentos HTML: revalidação imediata para atualizações rápidas de conteúdo
+/*.html
+  Cache-Control: public, max-age=0, must-revalidate
+
+/
+  Cache-Control: public, max-age=0, must-revalidate
+
+# Ativos Estáticos (Imagens, Ícones, Vetores SVG, WebP)
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Estilos e Scripts
+/style.css
+  Cache-Control: public, max-age=86400, stale-while-revalidate=604800
+
+/app.js
+  Cache-Control: public, max-age=86400, stale-while-revalidate=604800
